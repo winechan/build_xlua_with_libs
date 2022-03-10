@@ -23,6 +23,7 @@ jobs:
           cd build
           ./make_android_lua54.sh
           ./make_android_lua53.sh
+          sudo apt-get update
           sudo apt install gcc-multilib
           ./make_android_luajit_arm64.sh
       - name: Upload

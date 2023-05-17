@@ -1,0 +1,23 @@
+name: luac
+
+on: 
+  push:
+    paths: 
+      - build/luac/**
+      - .github/workflows/luac.yml
+
+jobs:
+  ios:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          cd build/luac
+          ./make_unix.sh
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/luac/build_unix/**/*
+          name: plugin_luac

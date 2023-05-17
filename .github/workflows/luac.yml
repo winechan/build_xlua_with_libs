@@ -20,4 +20,22 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./build/luac/build_unix/**/*
-          name: plugin_luac
+          name: plugin_luac_ios
+  windows:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Insatll MSVC
+        uses: microsoft/setup-msbuild@v1.0.2
+      
+      - name: Build
+        run: |
+          cd build/luac
+          .\make_win64.bat
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/luac/build64/**/*
+          name: plugin_luac_win

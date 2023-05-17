@@ -19,7 +19,7 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          path: ./build/luac/build_unix/**/*
+          path: ./build/luac/build_unix/*
           name: plugin_luac_ios
   windows:
     runs-on: windows-2019
@@ -37,5 +37,5 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          path: ./build/luac/build64/**/*
+          path: ./build/luac/build64/*
           name: plugin_luac_win

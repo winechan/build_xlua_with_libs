@@ -241,6 +241,7 @@ source_group_by_dir(${CMAKE_CURRENT_SOURCE_DIR} XLUA_CORE)
 
 if (APPLE)
     if (IOS)
+        ADD_DEFINITIONS(-DLUA_USE_IOS) # Despite claiming to be ISO C, iOS does not implement 'system'.(iOS11)
         set(CMAKE_OSX_ARCHITECTURES "$(ARCHS_STANDARD)")
         add_library(xlua STATIC
            ${LUA_CORE}
@@ -345,3 +346,6 @@ else ( )
     endif()
 endif ( )
 
+if ( ANDROID )
+    target_link_options(xlua PRIVATE -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384) # android 16K Pagesize
+endif ( )
